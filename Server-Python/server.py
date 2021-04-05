@@ -13,11 +13,13 @@ s.listen(5)
 while 1:
     conn, addr = s.accept()
     print('Connection address:', addr)
+    f = open('./a', 'wb')
     while 1:
         data = conn.recv(BUFFER_SIZE)
         if not data:
-            print(data)
             break
-        print('received data:', str(data, 'utf-8'))
-        conn.send(data)
+        # print('received data:', data.decode('utf-8'))
+        # conn.send(data)
+        f.write(data)
+    f.close()
     conn.close()
